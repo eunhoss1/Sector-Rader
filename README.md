@@ -1,12 +1,14 @@
 # Sector Radar
 
-기존 금융 대시보드를 참고하되, 복제하지 않고
-탑다운 투자 판단 흐름을 쉽게 보여주는 개인용 대시보드.
+Sector Radar is a personal top-down investment dashboard for Korean investors.
 
-핵심 질문:
-- 지금 시장은 Risk-on인가 Risk-off인가?
-- 어떤 섹터가 수혜를 받고 있는가?
-- 왜 수혜를 받는가?
-- 얼마나 지속될 수 있는가?
-- 그 섹터 안에서 어떤 종목이 직접 수혜인가?
-- 어떤 조건이 깨지면 관점을 바꿔야 하는가?
+It is designed to answer six practical questions in one cockpit:
+
+- Is the current market Risk-on, neutral, or Risk-off?
+- Which sectors are receiving the strongest tailwind?
+- Why are those sectors benefiting?
+- How durable is the current tailwind?
+- Which US and Korean stocks have direct exposure?
+- Which conditions would invalidate the investment view?
+
+The first version uses static mock JSON data and a transparent rule-based scoring model. It does not provide investment advice.

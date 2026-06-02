@@ -1,0 +1,1178 @@
+{
+  "marketSnapshot": {
+    "asOf": "2026-06-02T08:00:00+09:00",
+    "regime": "risk_on",
+    "riskScore": 48,
+    "confidence": 72,
+    "summary": "위험자산은 견조하지만 달러와 금리 부담이 완전히 사라진 국면은 아닙니다. 성장 섹터 중심의 선별적 Risk-on으로 보는 것이 적절합니다.",
+    "driverIds": ["spx-drawdown", "vix", "high-yield-spread"]
+  },
+  "signalGroups": [
+    {
+      "id": "risk_assets",
+      "label": "위험자산",
+      "description": "주식, 성장주, 비트코인이 위험 선호를 확인합니다.",
+      "weight": 1.25,
+      "indicatorIds": ["spx-drawdown", "nasdaq-momentum", "btc-strength"]
+    },
+    {
+      "id": "volatility_credit",
+      "label": "변동성·신용",
+      "description": "VIX와 신용 스프레드가 리스크 프리미엄을 보여줍니다.",
+      "weight": 1.35,
+      "indicatorIds": ["vix", "high-yield-spread", "skew"]
+    },
+    {
+      "id": "rates_fx",
+      "label": "금리·달러",
+      "description": "금리, 달러, 원화가 성장주와 한국 자금 흐름에 영향을 줍니다.",
+      "weight": 1,
+      "indicatorIds": ["us10y", "dollar-index", "yield-curve", "usdkrw"]
+    },
+    {
+      "id": "liquidity",
+      "label": "유동성",
+      "description": "지급준비금, TGA, MMF 흐름으로 시장 체력을 봅니다.",
+      "weight": 1.15,
+      "indicatorIds": ["fed-reserves", "rrp-balance", "tga-balance", "mmf-flows"]
+    },
+    {
+      "id": "defensive_assets",
+      "label": "방어자산",
+      "description": "금, 엔, 원유가 위험 회피나 인플레이션 압력을 보완합니다.",
+      "weight": 0.8,
+      "indicatorIds": ["gold", "jpy", "oil"]
+    }
+  ],
+  "indicators": [
+    {
+      "id": "spx-drawdown",
+      "group": "risk_assets",
+      "label": "S&P 500 고점 대비",
+      "value": -3.8,
+      "unit": "%",
+      "change": 1.2,
+      "trend": "up",
+      "status": "positive",
+      "score": 1.4,
+      "thresholds": [
+        {
+          "label": "강세 유지",
+          "condition": "-5% 이내",
+          "interpretation": "지수는 신고가권에서 크게 이탈하지 않았습니다."
+        },
+        {
+          "label": "경계",
+          "condition": "-10% 이하",
+          "interpretation": "위험 선호가 약해지고 방어적 판단이 필요합니다."
+        }
+      ],
+      "rationale": "대표 지수가 고점 근처에 머물러 있어 전체 시장의 위험 선호가 유지됩니다.",
+      "source": "Mock market data",
+      "timeSeries": [
+        { "date": "W-5", "value": -6.2 },
+        { "date": "W-4", "value": -5.1 },
+        { "date": "W-3", "value": -4.6 },
+        { "date": "W-2", "value": -4.1 },
+        { "date": "W-1", "value": -4.3 },
+        { "date": "Now", "value": -3.8 }
+      ]
+    },
+    {
+      "id": "nasdaq-momentum",
+      "group": "risk_assets",
+      "label": "나스닥 20일 모멘텀",
+      "value": 5.6,
+      "unit": "%",
+      "change": 0.9,
+      "trend": "up",
+      "status": "positive",
+      "score": 1.5,
+      "thresholds": [
+        {
+          "label": "성장주 우위",
+          "condition": "+3% 이상",
+          "interpretation": "성장 섹터로 자금이 계속 유입됩니다."
+        },
+        {
+          "label": "둔화",
+          "condition": "0% 이하",
+          "interpretation": "성장주 리더십이 흔들릴 수 있습니다."
+        }
+      ],
+      "rationale": "성장주 지수가 단기 상대강세를 보이며 AI와 소프트웨어 섹터에 우호적입니다.",
+      "source": "Mock market data",
+      "timeSeries": [
+        { "date": "W-5", "value": 1.8 },
+        { "date": "W-4", "value": 2.7 },
+        { "date": "W-3", "value": 3.6 },
+        { "date": "W-2", "value": 4.1 },
+        { "date": "W-1", "value": 4.7 },
+        { "date": "Now", "value": 5.6 }
+      ]
+    },
+    {
+      "id": "btc-strength",
+      "group": "risk_assets",
+      "label": "비트코인 30일 흐름",
+      "value": 8.2,
+      "unit": "%",
+      "change": -1.1,
+      "trend": "up",
+      "status": "positive",
+      "score": 1,
+      "thresholds": [
+        {
+          "label": "유동성 선호",
+          "condition": "+5% 이상",
+          "interpretation": "투기적 위험자산에 대한 수요가 살아 있습니다."
+        }
+      ],
+      "rationale": "비트코인은 상승 추세를 유지하지만 최근 탄력은 다소 둔화됐습니다.",
+      "source": "Mock market data",
+      "timeSeries": [
+        { "date": "W-5", "value": -2.4 },
+        { "date": "W-4", "value": 0.8 },
+        { "date": "W-3", "value": 4.5 },
+        { "date": "W-2", "value": 6.9 },
+        { "date": "W-1", "value": 9.3 },
+        { "date": "Now", "value": 8.2 }
+      ]
+    },
+    {
+      "id": "vix",
+      "group": "volatility_credit",
+      "label": "VIX",
+      "value": 16.8,
+      "unit": "pt",
+      "change": -2.1,
+      "trend": "down",
+      "status": "positive",
+      "score": 1.3,
+      "thresholds": [
+        {
+          "label": "안정",
+          "condition": "20 미만",
+          "interpretation": "변동성 부담이 낮아 위험자산 보유가 쉬운 구간입니다."
+        },
+        {
+          "label": "경계",
+          "condition": "25 이상",
+          "interpretation": "변동성 확대가 섹터 로테이션을 유발할 수 있습니다."
+        }
+      ],
+      "rationale": "공포 지표가 안정권에 있어 주도 섹터의 상승 추세가 쉽게 끊기지 않습니다.",
+      "source": "Mock CBOE data",
+      "timeSeries": [
+        { "date": "W-5", "value": 21.6 },
+        { "date": "W-4", "value": 20.4 },
+        { "date": "W-3", "value": 19.2 },
+        { "date": "W-2", "value": 18.7 },
+        { "date": "W-1", "value": 17.5 },
+        { "date": "Now", "value": 16.8 }
+      ]
+    },
+    {
+      "id": "high-yield-spread",
+      "group": "volatility_credit",
+      "label": "하이일드 스프레드",
+      "value": 3.45,
+      "unit": "%",
+      "change": -0.18,
+      "trend": "down",
+      "status": "positive",
+      "score": 1.2,
+      "thresholds": [
+        {
+          "label": "정상",
+          "condition": "4% 미만",
+          "interpretation": "신용시장이 위험자산을 압박하지 않습니다."
+        },
+        {
+          "label": "주의",
+          "condition": "4.8% 이상",
+          "interpretation": "신용 위험이 주식시장 할인율에 반영될 수 있습니다."
+        }
+      ],
+      "rationale": "신용 스프레드가 낮아 기업 조달 환경이 안정적입니다.",
+      "source": "Mock credit data",
+      "timeSeries": [
+        { "date": "W-5", "value": 3.92 },
+        { "date": "W-4", "value": 3.82 },
+        { "date": "W-3", "value": 3.71 },
+        { "date": "W-2", "value": 3.61 },
+        { "date": "W-1", "value": 3.52 },
+        { "date": "Now", "value": 3.45 }
+      ]
+    },
+    {
+      "id": "skew",
+      "group": "volatility_credit",
+      "label": "SKEW 꼬리위험",
+      "value": 136,
+      "unit": "pt",
+      "change": 4,
+      "trend": "up",
+      "status": "neutral",
+      "score": -0.2,
+      "thresholds": [
+        {
+          "label": "평온",
+          "condition": "130 이하",
+          "interpretation": "꼬리위험 프리미엄이 크지 않습니다."
+        },
+        {
+          "label": "주의",
+          "condition": "145 이상",
+          "interpretation": "큰 폭의 하락 방어 수요가 늘어납니다."
+        }
+      ],
+      "rationale": "변동성은 낮지만 꼬리위험 가격은 조금 올라 있어 무조건적 낙관은 피해야 합니다.",
+      "source": "Mock options data",
+      "timeSeries": [
+        { "date": "W-5", "value": 124 },
+        { "date": "W-4", "value": 128 },
+        { "date": "W-3", "value": 130 },
+        { "date": "W-2", "value": 132 },
+        { "date": "W-1", "value": 132 },
+        { "date": "Now", "value": 136 }
+      ]
+    },
+    {
+      "id": "us10y",
+      "group": "rates_fx",
+      "label": "미국 10년 금리",
+      "value": 4.32,
+      "unit": "%",
+      "change": -0.08,
+      "trend": "down",
+      "status": "neutral",
+      "score": 0.2,
+      "thresholds": [
+        {
+          "label": "성장주 부담 완화",
+          "condition": "4.4% 아래",
+          "interpretation": "장기금리 압력이 완화되면 성장주 밸류에이션에 유리합니다."
+        },
+        {
+          "label": "압박",
+          "condition": "4.8% 이상",
+          "interpretation": "고밸류 섹터의 멀티플 부담이 커집니다."
+        }
+      ],
+      "rationale": "금리는 하락했지만 아직 성장주에 완전한 순풍이라고 보기는 어렵습니다.",
+      "source": "Mock Treasury data",
+      "timeSeries": [
+        { "date": "W-5", "value": 4.55 },
+        { "date": "W-4", "value": 4.51 },
+        { "date": "W-3", "value": 4.43 },
+        { "date": "W-2", "value": 4.4 },
+        { "date": "W-1", "value": 4.37 },
+        { "date": "Now", "value": 4.32 }
+      ]
+    },
+    {
+      "id": "dollar-index",
+      "group": "rates_fx",
+      "label": "달러 인덱스",
+      "value": 103.2,
+      "unit": "pt",
+      "change": 0.4,
+      "trend": "up",
+      "status": "neutral",
+      "score": -0.4,
+      "thresholds": [
+        {
+          "label": "우호",
+          "condition": "102 이하",
+          "interpretation": "달러 약세는 신흥국과 원자재에 우호적입니다."
+        },
+        {
+          "label": "부담",
+          "condition": "106 이상",
+          "interpretation": "달러 강세는 한국과 신흥국 자금 흐름을 압박합니다."
+        }
+      ],
+      "rationale": "달러가 완전히 약해지지 않아 한국 수급에는 일부 부담이 남아 있습니다.",
+      "source": "Mock FX data",
+      "timeSeries": [
+        { "date": "W-5", "value": 104.1 },
+        { "date": "W-4", "value": 103.7 },
+        { "date": "W-3", "value": 102.9 },
+        { "date": "W-2", "value": 102.8 },
+        { "date": "W-1", "value": 102.9 },
+        { "date": "Now", "value": 103.2 }
+      ]
+    },
+    {
+      "id": "yield-curve",
+      "group": "rates_fx",
+      "label": "10Y-2Y 금리차",
+      "value": 0.44,
+      "unit": "%",
+      "change": 0.06,
+      "trend": "up",
+      "status": "positive",
+      "score": 0.5,
+      "thresholds": [
+        {
+          "label": "정상화",
+          "condition": "0% 이상",
+          "interpretation": "경기침체 스트레스가 완화되는 신호입니다."
+        }
+      ],
+      "rationale": "장단기 금리차가 양수권을 유지해 경기 우려가 완화됩니다.",
+      "source": "Mock Treasury data",
+      "timeSeries": [
+        { "date": "W-5", "value": 0.11 },
+        { "date": "W-4", "value": 0.2 },
+        { "date": "W-3", "value": 0.31 },
+        { "date": "W-2", "value": 0.37 },
+        { "date": "W-1", "value": 0.38 },
+        { "date": "Now", "value": 0.44 }
+      ]
+    },
+    {
+      "id": "usdkrw",
+      "group": "rates_fx",
+      "label": "원달러 환율",
+      "value": 1368,
+      "unit": "KRW",
+      "change": 9,
+      "trend": "up",
+      "status": "neutral",
+      "score": -0.5,
+      "thresholds": [
+        {
+          "label": "한국 우호",
+          "condition": "1320 아래",
+          "interpretation": "원화 강세는 외국인 수급에 우호적입니다."
+        },
+        {
+          "label": "부담",
+          "condition": "1400 이상",
+          "interpretation": "환율 부담이 한국 주식 리스크 프리미엄을 높입니다."
+        }
+      ],
+      "rationale": "환율은 한국 증시에 중립 이하입니다. 수출주는 방어되지만 외국인 수급은 둔화될 수 있습니다.",
+      "source": "Mock FX data",
+      "timeSeries": [
+        { "date": "W-5", "value": 1342 },
+        { "date": "W-4", "value": 1349 },
+        { "date": "W-3", "value": 1356 },
+        { "date": "W-2", "value": 1361 },
+        { "date": "W-1", "value": 1359 },
+        { "date": "Now", "value": 1368 }
+      ]
+    },
+    {
+      "id": "fed-reserves",
+      "group": "liquidity",
+      "label": "연준 지급준비금",
+      "value": 3.32,
+      "unit": "T USD",
+      "change": 0.04,
+      "trend": "up",
+      "status": "positive",
+      "score": 0.8,
+      "thresholds": [
+        {
+          "label": "충분",
+          "condition": "3T 이상",
+          "interpretation": "은행권 유동성 완충이 유지됩니다."
+        }
+      ],
+      "rationale": "지급준비금은 충분한 수준이라 단기 자금시장 스트레스는 낮습니다.",
+      "source": "Mock liquidity data",
+      "timeSeries": [
+        { "date": "W-5", "value": 3.12 },
+        { "date": "W-4", "value": 3.18 },
+        { "date": "W-3", "value": 3.22 },
+        { "date": "W-2", "value": 3.28 },
+        { "date": "W-1", "value": 3.28 },
+        { "date": "Now", "value": 3.32 }
+      ]
+    },
+    {
+      "id": "rrp-balance",
+      "group": "liquidity",
+      "label": "역레포 잔액",
+      "value": 0.12,
+      "unit": "T USD",
+      "change": -0.03,
+      "trend": "down",
+      "status": "neutral",
+      "score": 0.1,
+      "thresholds": [
+        {
+          "label": "소진 근접",
+          "condition": "0.2T 이하",
+          "interpretation": "추가 유동성 공급 여력은 제한됩니다."
+        }
+      ],
+      "rationale": "역레포 소진은 과거에는 유동성 공급이었지만 이제는 추가 완충이 줄어든 상태입니다.",
+      "source": "Mock liquidity data",
+      "timeSeries": [
+        { "date": "W-5", "value": 0.28 },
+        { "date": "W-4", "value": 0.23 },
+        { "date": "W-3", "value": 0.19 },
+        { "date": "W-2", "value": 0.16 },
+        { "date": "W-1", "value": 0.15 },
+        { "date": "Now", "value": 0.12 }
+      ]
+    },
+    {
+      "id": "tga-balance",
+      "group": "liquidity",
+      "label": "TGA 잔액",
+      "value": 0.83,
+      "unit": "T USD",
+      "change": 0.07,
+      "trend": "up",
+      "status": "neutral",
+      "score": -0.6,
+      "thresholds": [
+        {
+          "label": "흡수 부담",
+          "condition": "증가 지속",
+          "interpretation": "재무부 계정으로 현금이 이동하면 시장 유동성이 줄어듭니다."
+        }
+      ],
+      "rationale": "TGA가 늘고 있어 일부 유동성 흡수 압력이 있습니다.",
+      "source": "Mock liquidity data",
+      "timeSeries": [
+        { "date": "W-5", "value": 0.62 },
+        { "date": "W-4", "value": 0.67 },
+        { "date": "W-3", "value": 0.71 },
+        { "date": "W-2", "value": 0.76 },
+        { "date": "W-1", "value": 0.76 },
+        { "date": "Now", "value": 0.83 }
+      ]
+    },
+    {
+      "id": "mmf-flows",
+      "group": "liquidity",
+      "label": "MMF 주간 순유출",
+      "value": -42,
+      "unit": "B USD",
+      "change": -18,
+      "trend": "down",
+      "status": "positive",
+      "score": 0.7,
+      "thresholds": [
+        {
+          "label": "위험자산 이동",
+          "condition": "순유출",
+          "interpretation": "대기성 자금이 시장으로 이동할 가능성이 커집니다."
+        }
+      ],
+      "rationale": "MMF에서 일부 자금이 빠져나오며 위험자산 수요를 뒷받침합니다.",
+      "source": "Mock fund flow data",
+      "timeSeries": [
+        { "date": "W-5", "value": 22 },
+        { "date": "W-4", "value": 8 },
+        { "date": "W-3", "value": -11 },
+        { "date": "W-2", "value": -24 },
+        { "date": "W-1", "value": -24 },
+        { "date": "Now", "value": -42 }
+      ]
+    },
+    {
+      "id": "gold",
+      "group": "defensive_assets",
+      "label": "금 가격",
+      "value": 2340,
+      "unit": "USD/oz",
+      "change": 18,
+      "trend": "up",
+      "status": "neutral",
+      "score": 0.2,
+      "thresholds": [
+        {
+          "label": "방어 수요",
+          "condition": "상승 지속",
+          "interpretation": "안전자산과 인플레이션 헤지 수요가 남아 있습니다."
+        }
+      ],
+      "rationale": "금 강세는 위험 회피라기보다 실질금리 안정과 헤지 수요에 가깝습니다.",
+      "source": "Mock commodity data",
+      "timeSeries": [
+        { "date": "W-5", "value": 2290 },
+        { "date": "W-4", "value": 2312 },
+        { "date": "W-3", "value": 2321 },
+        { "date": "W-2", "value": 2327 },
+        { "date": "W-1", "value": 2322 },
+        { "date": "Now", "value": 2340 }
+      ]
+    },
+    {
+      "id": "jpy",
+      "group": "defensive_assets",
+      "label": "달러/엔",
+      "value": 156.2,
+      "unit": "JPY",
+      "change": 1.4,
+      "trend": "up",
+      "status": "neutral",
+      "score": -0.3,
+      "thresholds": [
+        {
+          "label": "엔 약세",
+          "condition": "155 이상",
+          "interpretation": "위험 회피보다는 달러 우위가 강합니다."
+        }
+      ],
+      "rationale": "엔 약세는 방어자산 수요가 강하지 않다는 의미지만 아시아 환율 부담은 남깁니다.",
+      "source": "Mock FX data",
+      "timeSeries": [
+        { "date": "W-5", "value": 152.9 },
+        { "date": "W-4", "value": 153.4 },
+        { "date": "W-3", "value": 154.1 },
+        { "date": "W-2", "value": 155.2 },
+        { "date": "W-1", "value": 154.8 },
+        { "date": "Now", "value": 156.2 }
+      ]
+    },
+    {
+      "id": "oil",
+      "group": "defensive_assets",
+      "label": "WTI 원유",
+      "value": 78.4,
+      "unit": "USD",
+      "change": -1.8,
+      "trend": "down",
+      "status": "neutral",
+      "score": -0.1,
+      "thresholds": [
+        {
+          "label": "물가 부담",
+          "condition": "85 이상",
+          "interpretation": "원유 상승은 인플레이션과 금리 경로를 압박합니다."
+        }
+      ],
+      "rationale": "원유는 안정적이지만 경기와 물가 양쪽 해석이 가능한 중립 신호입니다.",
+      "source": "Mock commodity data",
+      "timeSeries": [
+        { "date": "W-5", "value": 82.6 },
+        { "date": "W-4", "value": 81.2 },
+        { "date": "W-3", "value": 80.5 },
+        { "date": "W-2", "value": 79.4 },
+        { "date": "W-1", "value": 80.2 },
+        { "date": "Now", "value": 78.4 }
+      ]
+    }
+  ],
+  "sectors": [
+    {
+      "id": "ai-semiconductors",
+      "region": "US+KR",
+      "name": "AI 반도체",
+      "ticker": "SOXX / KRX Semi",
+      "summary": "성장주 모멘텀, 낮은 변동성, AI 설비투자 사이클이 동시에 맞물린 최상위 수혜 섹터입니다.",
+      "totalScore": 88,
+      "momentumScore": 91,
+      "flowScore": 84,
+      "macroFitScore": 86,
+      "durabilityScore": 82,
+      "whyItBenefits": [
+        "나스닥 모멘텀이 강해 고성장 섹터에 대한 위험 선호가 유지됩니다.",
+        "신용 스프레드와 VIX가 안정권이라 대형 기술주의 밸류에이션 압박이 낮습니다.",
+        "AI 서버, HBM, 네트워크 반도체 투자가 미국과 한국 공급망을 함께 밀어 올립니다."
+      ],
+      "durability": {
+        "label": "높음",
+        "score": 82,
+        "supportiveFactors": ["AI CapEx 가이던스 상향", "HBM 공급 부족", "대형 클라우드 투자 지속"],
+        "weakeningFactors": ["장기금리 재상승", "수출 규제 확대", "고객사 재고 조정"],
+        "nextChecks": ["대형 클라우드 CapEx 발표", "메모리 가격 월간 데이터", "미국 10년 금리 4.8% 돌파 여부"]
+      },
+      "scenarios": [
+        {
+          "label": "기본",
+          "description": "AI 투자와 낮은 변동성이 유지되며 주도 섹터 지위를 유지합니다.",
+          "probability": 58
+        },
+        {
+          "label": "확장",
+          "description": "금리와 달러가 동시에 내려가면 한국 반도체로 자금 유입이 확대됩니다.",
+          "probability": 27
+        },
+        {
+          "label": "훼손",
+          "description": "금리 급등 또는 주문 둔화가 나오면 멀티플 조정이 먼저 발생합니다.",
+          "probability": 15
+        }
+      ],
+      "catalystIds": ["ai-capex", "credit-calm", "rate-cap"],
+      "stockIds": ["nvda", "avgo", "amd", "samsung-electronics", "sk-hynix"],
+      "invalidationRuleIds": ["rule-vix", "rule-ai-orders", "rule-us10y", "rule-dollar"]
+    },
+    {
+      "id": "power-infrastructure",
+      "region": "US+KR",
+      "name": "전력 인프라",
+      "ticker": "GRID / Power Equipment",
+      "summary": "AI 데이터센터 전력 수요와 노후 전력망 투자가 겹치며 실물 투자 사이클의 수혜가 이어집니다.",
+      "totalScore": 78,
+      "momentumScore": 77,
+      "flowScore": 73,
+      "macroFitScore": 81,
+      "durabilityScore": 84,
+      "whyItBenefits": [
+        "AI 데이터센터 확장은 전력 설비와 냉각, 변압기 수요를 동반합니다.",
+        "고금리 부담이 완화되면 설비투자 프로젝트의 자금조달 부담이 줄어듭니다.",
+        "한국 전력기기 업체는 북미 수출 사이클과 원화 약세 방어 효과를 동시에 받습니다."
+      ],
+      "durability": {
+        "label": "높음",
+        "score": 84,
+        "supportiveFactors": ["데이터센터 전력 계약 증가", "북미 전력망 교체", "변압기 공급 리드타임 장기화"],
+        "weakeningFactors": ["프로젝트 승인 지연", "구리 가격 급등", "달러 조달 비용 상승"],
+        "nextChecks": ["전력기기 수주잔고", "구리 가격", "데이터센터 착공 지표"]
+      },
+      "scenarios": [
+        {
+          "label": "기본",
+          "description": "AI 인프라 투자가 반도체에서 전력 설비로 확산됩니다.",
+          "probability": 52
+        },
+        {
+          "label": "확장",
+          "description": "금리 하락과 정책 지원이 겹치면 장기 프로젝트 가치가 재평가됩니다.",
+          "probability": 29
+        },
+        {
+          "label": "훼손",
+          "description": "원자재 비용이 급등하면 마진 기대가 낮아집니다.",
+          "probability": 19
+        }
+      ],
+      "catalystIds": ["ai-power-demand", "rate-cap", "liquidity-floor"],
+      "stockIds": ["etn", "ge-vernova", "ls-electric", "hyosung-heavy"],
+      "invalidationRuleIds": ["rule-us10y", "rule-oil", "rule-power-orders"]
+    },
+    {
+      "id": "defense-aerospace",
+      "region": "US+KR",
+      "name": "방산·항공우주",
+      "ticker": "ITA / K-Defense",
+      "summary": "위험자산 랠리와 별개로 정책 예산과 지정학 수요가 받쳐주는 중장기 테마입니다.",
+      "totalScore": 74,
+      "momentumScore": 70,
+      "flowScore": 68,
+      "macroFitScore": 76,
+      "durabilityScore": 86,
+      "whyItBenefits": [
+        "정부 예산 기반 수요는 경기 사이클에 덜 민감합니다.",
+        "달러 강세가 완전히 꺾이지 않은 환경에서는 수출형 한국 방산주의 환율 방어력이 남아 있습니다.",
+        "신용시장 안정은 장기 수주 기업의 할인율 부담을 낮춥니다."
+      ],
+      "durability": {
+        "label": "높음",
+        "score": 86,
+        "supportiveFactors": ["NATO 방위비 지출", "중동·동유럽 수요", "장기 수주잔고"],
+        "weakeningFactors": ["수주 공백", "정책 예산 삭감", "원화 급강세"],
+        "nextChecks": ["분기 신규 수주", "수출 허가 뉴스", "국방 예산안"]
+      },
+      "scenarios": [
+        {
+          "label": "기본",
+          "description": "장기 수주잔고가 실적 가시성을 유지합니다.",
+          "probability": 55
+        },
+        {
+          "label": "확장",
+          "description": "대형 수출 계약이 추가되면 한국 방산주의 재평가가 이어집니다.",
+          "probability": 24
+        },
+        {
+          "label": "훼손",
+          "description": "수주 지연과 원화 강세가 동시에 발생하면 모멘텀이 둔화됩니다.",
+          "probability": 21
+        }
+      ],
+      "catalystIds": ["defense-budget", "credit-calm", "export-fx"],
+      "stockIds": ["lmt", "rtx", "hanwha-aerospace", "lig-nex1"],
+      "invalidationRuleIds": ["rule-dollar-down", "rule-defense-orders"]
+    },
+    {
+      "id": "platform-software",
+      "region": "US+KR",
+      "name": "플랫폼·소프트웨어",
+      "ticker": "IGV / Internet",
+      "summary": "Risk-on에서는 강하지만 금리와 달러 부담에 민감해 반도체보다 지속성 점수는 낮습니다.",
+      "totalScore": 69,
+      "momentumScore": 76,
+      "flowScore": 65,
+      "macroFitScore": 68,
+      "durabilityScore": 60,
+      "whyItBenefits": [
+        "나스닥 단기 모멘텀이 강해 소프트웨어와 인터넷 성장주가 동반 반등합니다.",
+        "VIX 안정은 고밸류 종목의 리스크 프리미엄을 낮춥니다.",
+        "다만 금리와 달러가 아직 완전한 순풍은 아니라 선택적 접근이 필요합니다."
+      ],
+      "durability": {
+        "label": "보통",
+        "score": 60,
+        "supportiveFactors": ["AI 기능 매출화", "광고 경기 회복", "클라우드 사용량 증가"],
+        "weakeningFactors": ["금리 재상승", "밸류에이션 부담", "규제 리스크"],
+        "nextChecks": ["클라우드 성장률", "광고 매출", "미국 10년 금리"]
+      },
+      "scenarios": [
+        {
+          "label": "기본",
+          "description": "주도주는 따라가지만 이익 가시성이 낮은 종목은 차별화됩니다.",
+          "probability": 50
+        },
+        {
+          "label": "확장",
+          "description": "금리 하락 시 멀티플 확장이 더 크게 나타납니다.",
+          "probability": 30
+        },
+        {
+          "label": "훼손",
+          "description": "금리 상승과 규제 이슈가 겹치면 가장 먼저 조정됩니다.",
+          "probability": 20
+        }
+      ],
+      "catalystIds": ["rate-cap", "ai-capex", "liquidity-floor"],
+      "stockIds": ["msft", "meta", "naver", "kakao"],
+      "invalidationRuleIds": ["rule-us10y", "rule-vix", "rule-platform-growth"]
+    },
+    {
+      "id": "healthcare-biotech",
+      "region": "US+KR",
+      "name": "헬스케어·바이오",
+      "ticker": "XLV / K-Bio",
+      "summary": "위험 선호와 방어 성격을 동시에 가진 섹터입니다. 금리 안정 시 바이오 성장주에 기회가 생깁니다.",
+      "totalScore": 63,
+      "momentumScore": 58,
+      "flowScore": 61,
+      "macroFitScore": 66,
+      "durabilityScore": 70,
+      "whyItBenefits": [
+        "금리 급등이 멈추면 장기 연구개발 가치의 할인율 부담이 줄어듭니다.",
+        "위험자산 선호가 유지될 때 바이오 성장주의 자금 조달 환경이 개선됩니다.",
+        "방어적 이익 구조를 가진 대형 헬스케어는 변동성 확대 시에도 완충 역할을 합니다."
+      ],
+      "durability": {
+        "label": "보통",
+        "score": 70,
+        "supportiveFactors": ["금리 안정", "신약 모멘텀", "방어적 실적"],
+        "weakeningFactors": ["임상 실패", "자금 조달 비용", "규제 변수"],
+        "nextChecks": ["주요 임상 일정", "바이오 ETF 자금 흐름", "금리 추세"]
+      },
+      "scenarios": [
+        {
+          "label": "기본",
+          "description": "대형주는 안정적이고 중소형 바이오는 이벤트 중심으로 차별화됩니다.",
+          "probability": 54
+        },
+        {
+          "label": "확장",
+          "description": "금리 하락과 임상 이벤트가 맞물리면 바이오 선호가 확대됩니다.",
+          "probability": 25
+        },
+        {
+          "label": "훼손",
+          "description": "Risk-off가 강해지면 자금조달 민감도가 높은 종목이 먼저 약해집니다.",
+          "probability": 21
+        }
+      ],
+      "catalystIds": ["rate-cap", "credit-calm", "drug-cycle"],
+      "stockIds": ["lly", "unh", "samsung-biologics", "celltrion"],
+      "invalidationRuleIds": ["rule-vix", "rule-us10y", "rule-biotech-funding"]
+    }
+  ],
+  "catalysts": [
+    {
+      "id": "ai-capex",
+      "title": "AI 설비투자 사이클",
+      "description": "클라우드와 빅테크의 AI 서버 투자가 반도체, 네트워크, 소프트웨어 수요를 견인합니다.",
+      "linkedIndicatorIds": ["nasdaq-momentum", "spx-drawdown"],
+      "beneficiarySectorIds": ["ai-semiconductors", "platform-software"],
+      "persistence": "medium"
+    },
+    {
+      "id": "credit-calm",
+      "title": "낮은 신용 스트레스",
+      "description": "하이일드 스프레드가 안정권이면 위험자산과 장기 성장주 보유 부담이 낮아집니다.",
+      "linkedIndicatorIds": ["high-yield-spread", "vix"],
+      "beneficiarySectorIds": ["ai-semiconductors", "defense-aerospace", "healthcare-biotech"],
+      "persistence": "medium"
+    },
+    {
+      "id": "rate-cap",
+      "title": "금리 상단 제한",
+      "description": "장기금리가 급등하지 않으면 성장주, 바이오, 설비투자 섹터의 할인율 부담이 줄어듭니다.",
+      "linkedIndicatorIds": ["us10y", "yield-curve"],
+      "beneficiarySectorIds": ["ai-semiconductors", "power-infrastructure", "platform-software", "healthcare-biotech"],
+      "persistence": "short"
+    },
+    {
+      "id": "liquidity-floor",
+      "title": "유동성 완충",
+      "description": "지급준비금과 MMF 순유출이 시장의 하방 완충 역할을 합니다.",
+      "linkedIndicatorIds": ["fed-reserves", "mmf-flows", "tga-balance"],
+      "beneficiarySectorIds": ["power-infrastructure", "platform-software"],
+      "persistence": "short"
+    },
+    {
+      "id": "ai-power-demand",
+      "title": "AI 전력 수요",
+      "description": "데이터센터 증설이 변압기, 전력기기, 전력망 투자로 확산됩니다.",
+      "linkedIndicatorIds": ["nasdaq-momentum", "us10y"],
+      "beneficiarySectorIds": ["power-infrastructure"],
+      "persistence": "long"
+    },
+    {
+      "id": "defense-budget",
+      "title": "방위비 지출 확대",
+      "description": "정책 예산과 안보 수요는 경기 사이클과 독립적인 장기 매출 가시성을 제공합니다.",
+      "linkedIndicatorIds": ["dollar-index", "usdkrw"],
+      "beneficiarySectorIds": ["defense-aerospace"],
+      "persistence": "long"
+    },
+    {
+      "id": "export-fx",
+      "title": "수출 환율 방어",
+      "description": "원화 약세 구간은 수출형 한국 기업의 원화 매출 환산 효과를 높입니다.",
+      "linkedIndicatorIds": ["usdkrw", "dollar-index"],
+      "beneficiarySectorIds": ["defense-aerospace"],
+      "persistence": "short"
+    },
+    {
+      "id": "drug-cycle",
+      "title": "신약·바이오 이벤트",
+      "description": "임상, 허가, 파트너십 이벤트는 매크로와 독립적인 개별 종목 모멘텀을 만듭니다.",
+      "linkedIndicatorIds": ["us10y", "high-yield-spread"],
+      "beneficiarySectorIds": ["healthcare-biotech"],
+      "persistence": "medium"
+    }
+  ],
+  "stocks": [
+    {
+      "id": "nvda",
+      "market": "US",
+      "ticker": "NVDA",
+      "name": "NVIDIA",
+      "sectorId": "ai-semiconductors",
+      "exposureScore": 96,
+      "directBenefit": "AI GPU와 네트워크 장비 수요의 가장 직접적인 수혜 기업입니다.",
+      "sensitivity": "AI CapEx, 데이터센터 주문, 총마진",
+      "risks": "고밸류에이션과 고객사 투자 속도 둔화"
+    },
+    {
+      "id": "avgo",
+      "market": "US",
+      "ticker": "AVGO",
+      "name": "Broadcom",
+      "sectorId": "ai-semiconductors",
+      "exposureScore": 90,
+      "directBenefit": "AI ASIC, 네트워크 반도체, 인프라 소프트웨어가 함께 연결됩니다.",
+      "sensitivity": "커스텀 칩 수주, 네트워크 투자",
+      "risks": "대형 고객 집중도와 인수 통합 리스크"
+    },
+    {
+      "id": "amd",
+      "market": "US",
+      "ticker": "AMD",
+      "name": "AMD",
+      "sectorId": "ai-semiconductors",
+      "exposureScore": 82,
+      "directBenefit": "AI 가속기 경쟁 구도에서 후발 수요 확대를 기대할 수 있습니다.",
+      "sensitivity": "GPU 점유율, 서버 CPU 수요",
+      "risks": "경쟁 강도와 제품 전환 속도"
+    },
+    {
+      "id": "samsung-electronics",
+      "market": "KR",
+      "ticker": "005930",
+      "name": "삼성전자",
+      "sectorId": "ai-semiconductors",
+      "exposureScore": 78,
+      "directBenefit": "메모리 업황 회복과 HBM 경쟁력 개선 기대가 연결됩니다.",
+      "sensitivity": "DRAM 가격, HBM 인증, 원달러 환율",
+      "risks": "HBM 점유율 회복 지연과 스마트폰 수요 둔화"
+    },
+    {
+      "id": "sk-hynix",
+      "market": "KR",
+      "ticker": "000660",
+      "name": "SK하이닉스",
+      "sectorId": "ai-semiconductors",
+      "exposureScore": 94,
+      "directBenefit": "HBM 공급 부족과 AI 서버 메모리 수요에 직접 노출됩니다.",
+      "sensitivity": "HBM 가격, 고객사 투자, 메모리 재고",
+      "risks": "고객 집중도와 사이클 고점 우려"
+    },
+    {
+      "id": "etn",
+      "market": "US",
+      "ticker": "ETN",
+      "name": "Eaton",
+      "sectorId": "power-infrastructure",
+      "exposureScore": 88,
+      "directBenefit": "전력 관리 장비와 데이터센터 전력 수요가 실적에 연결됩니다.",
+      "sensitivity": "데이터센터 수주, 설비투자",
+      "risks": "공급망 병목 완화 시 가격 압력"
+    },
+    {
+      "id": "ge-vernova",
+      "market": "US",
+      "ticker": "GEV",
+      "name": "GE Vernova",
+      "sectorId": "power-infrastructure",
+      "exposureScore": 83,
+      "directBenefit": "전력망, 발전, 에너지 전환 투자에 포괄적으로 노출됩니다.",
+      "sensitivity": "전력망 투자, 발전 장비 수요",
+      "risks": "프로젝트 마진과 정책 지연"
+    },
+    {
+      "id": "ls-electric",
+      "market": "KR",
+      "ticker": "010120",
+      "name": "LS ELECTRIC",
+      "sectorId": "power-infrastructure",
+      "exposureScore": 86,
+      "directBenefit": "북미 전력기기 수출과 자동화 설비 수요의 직접 수혜입니다.",
+      "sensitivity": "변압기 수주, 원달러 환율",
+      "risks": "원자재 비용과 수주 피크아웃"
+    },
+    {
+      "id": "hyosung-heavy",
+      "market": "KR",
+      "ticker": "298040",
+      "name": "효성중공업",
+      "sectorId": "power-infrastructure",
+      "exposureScore": 84,
+      "directBenefit": "초고압 변압기와 전력망 투자 확대에 직접 연결됩니다.",
+      "sensitivity": "북미 수주, 변압기 가격",
+      "risks": "설비 증설 경쟁과 납기 지연"
+    },
+    {
+      "id": "lmt",
+      "market": "US",
+      "ticker": "LMT",
+      "name": "Lockheed Martin",
+      "sectorId": "defense-aerospace",
+      "exposureScore": 82,
+      "directBenefit": "미국과 동맹국 방위 예산 증가에 직접 노출됩니다.",
+      "sensitivity": "국방 예산, 미사일·항공 수주",
+      "risks": "예산 삭감과 계약 지연"
+    },
+    {
+      "id": "rtx",
+      "market": "US",
+      "ticker": "RTX",
+      "name": "RTX",
+      "sectorId": "defense-aerospace",
+      "exposureScore": 78,
+      "directBenefit": "방산 시스템과 항공 엔진 회복을 함께 받습니다.",
+      "sensitivity": "항공 수요, 방산 수주",
+      "risks": "엔진 품질 비용과 공급망"
+    },
+    {
+      "id": "hanwha-aerospace",
+      "market": "KR",
+      "ticker": "012450",
+      "name": "한화에어로스페이스",
+      "sectorId": "defense-aerospace",
+      "exposureScore": 91,
+      "directBenefit": "K-방산 수출과 장기 수주잔고가 실적 가시성을 높입니다.",
+      "sensitivity": "수출 계약, 환율, 납품 일정",
+      "risks": "수주 공백과 정치적 승인 변수"
+    },
+    {
+      "id": "lig-nex1",
+      "market": "KR",
+      "ticker": "079550",
+      "name": "LIG넥스원",
+      "sectorId": "defense-aerospace",
+      "exposureScore": 83,
+      "directBenefit": "유도무기와 방공 체계 수요에 직접 연결됩니다.",
+      "sensitivity": "방공 수주, 중동 수출",
+      "risks": "프로젝트 지연과 단일 이벤트 의존"
+    },
+    {
+      "id": "msft",
+      "market": "US",
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "sectorId": "platform-software",
+      "exposureScore": 86,
+      "directBenefit": "클라우드와 AI 소프트웨어 매출화가 동시에 진행됩니다.",
+      "sensitivity": "Azure 성장률, AI 구독 전환",
+      "risks": "CapEx 부담과 규제 리스크"
+    },
+    {
+      "id": "meta",
+      "market": "US",
+      "ticker": "META",
+      "name": "Meta Platforms",
+      "sectorId": "platform-software",
+      "exposureScore": 80,
+      "directBenefit": "광고 경기 회복과 AI 추천 효율 개선에 노출됩니다.",
+      "sensitivity": "광고 매출, AI 투자비",
+      "risks": "규제와 투자비 확대"
+    },
+    {
+      "id": "naver",
+      "market": "KR",
+      "ticker": "035420",
+      "name": "NAVER",
+      "sectorId": "platform-software",
+      "exposureScore": 68,
+      "directBenefit": "광고, 커머스, AI 서비스가 국내 인터넷 심리 회복과 연결됩니다.",
+      "sensitivity": "광고 경기, 원화, AI 비용",
+      "risks": "경쟁 심화와 비용 부담"
+    },
+    {
+      "id": "kakao",
+      "market": "KR",
+      "ticker": "035720",
+      "name": "카카오",
+      "sectorId": "platform-software",
+      "exposureScore": 60,
+      "directBenefit": "Risk-on 확산 시 낙폭 과대 플랫폼주의 반등 후보가 됩니다.",
+      "sensitivity": "광고 경기, 규제, 자회사 가치",
+      "risks": "규제와 이익 가시성 부족"
+    },
+    {
+      "id": "lly",
+      "market": "US",
+      "ticker": "LLY",
+      "name": "Eli Lilly",
+      "sectorId": "healthcare-biotech",
+      "exposureScore": 85,
+      "directBenefit": "비만·당뇨 치료제 성장 사이클의 핵심 수혜 기업입니다.",
+      "sensitivity": "처방 증가, 생산능력",
+      "risks": "밸류에이션과 경쟁 약물"
+    },
+    {
+      "id": "unh",
+      "market": "US",
+      "ticker": "UNH",
+      "name": "UnitedHealth",
+      "sectorId": "healthcare-biotech",
+      "exposureScore": 66,
+      "directBenefit": "방어적 이익 구조로 변동성 확대 구간에서 완충 역할을 합니다.",
+      "sensitivity": "의료비율, 정책 규제",
+      "risks": "정책 리스크와 마진 압력"
+    },
+    {
+      "id": "samsung-biologics",
+      "market": "KR",
+      "ticker": "207940",
+      "name": "삼성바이오로직스",
+      "sectorId": "healthcare-biotech",
+      "exposureScore": 78,
+      "directBenefit": "CDMO 장기 수주와 원화 약세 환산 효과가 연결됩니다.",
+      "sensitivity": "수주잔고, 환율, 공장 가동률",
+      "risks": "증설 속도와 글로벌 경쟁"
+    },
+    {
+      "id": "celltrion",
+      "market": "KR",
+      "ticker": "068270",
+      "name": "셀트리온",
+      "sectorId": "healthcare-biotech",
+      "exposureScore": 70,
+      "directBenefit": "바이오시밀러 판매 확대와 합병 후 비용 효율화 기대가 있습니다.",
+      "sensitivity": "미국 판매, 약가, 환율",
+      "risks": "가격 경쟁과 신제품 속도"
+    }
+  ],
+  "invalidationRules": [
+    {
+      "id": "rule-vix",
+      "scope": "market",
+      "condition": "VIX가 25 이상으로 상승하고 3거래일 이상 유지",
+      "linkedIndicatorId": "vix",
+      "threshold": "25+",
+      "severity": "critical",
+      "suggestedAction": "Risk-on 가정을 중립으로 낮추고 고베타 섹터 비중을 줄입니다."
+    },
+    {
+      "id": "rule-ai-orders",
+      "scope": "sector",
+      "condition": "AI 서버·HBM 주문 전망이 2개 이상 주요 기업에서 하향",
+      "linkedIndicatorId": "nasdaq-momentum",
+      "threshold": "Guidance down",
+      "severity": "critical",
+      "suggestedAction": "AI 반도체 수혜 지속성 점수를 낮추고 후순위 섹터로 전환합니다."
+    },
+    {
+      "id": "rule-us10y",
+      "scope": "market",
+      "condition": "미국 10년 금리가 4.8%를 상향 돌파",
+      "linkedIndicatorId": "us10y",
+      "threshold": "4.8%+",
+      "severity": "caution",
+      "suggestedAction": "성장주 밸류에이션 부담을 반영해 신규 진입을 늦춥니다."
+    },
+    {
+      "id": "rule-dollar",
+      "scope": "market",
+      "condition": "달러 인덱스가 106 이상으로 상승",
+      "linkedIndicatorId": "dollar-index",
+      "threshold": "106+",
+      "severity": "caution",
+      "suggestedAction": "한국과 신흥국 수급 부담을 반영하고 환율 민감 종목을 재점검합니다."
+    },
+    {
+      "id": "rule-oil",
+      "scope": "market",
+      "condition": "WTI가 85달러 이상으로 상승하며 인플레이션 압력을 재점화",
+      "linkedIndicatorId": "oil",
+      "threshold": "85+",
+      "severity": "watch",
+      "suggestedAction": "전력 인프라 마진과 금리 경로를 함께 확인합니다."
+    },
+    {
+      "id": "rule-power-orders",
+      "scope": "sector",
+      "condition": "전력기기 신규 수주 증가율이 두 분기 연속 둔화",
+      "linkedIndicatorId": "nasdaq-momentum",
+      "threshold": "2Q slowdown",
+      "severity": "caution",
+      "suggestedAction": "전력 인프라를 장기 테마로 유지하되 단기 모멘텀 점수를 낮춥니다."
+    },
+    {
+      "id": "rule-dollar-down",
+      "scope": "sector",
+      "condition": "원달러 환율이 1320 아래로 빠르게 하락",
+      "linkedIndicatorId": "usdkrw",
+      "threshold": "1320-",
+      "severity": "watch",
+      "suggestedAction": "수출형 한국 방산주의 환율 방어 효과를 제거하고 순수 수주 모멘텀만 봅니다."
+    },
+    {
+      "id": "rule-defense-orders",
+      "scope": "sector",
+      "condition": "대형 방산 수출 계약이 지연되거나 취소",
+      "linkedIndicatorId": "usdkrw",
+      "threshold": "Order delay",
+      "severity": "critical",
+      "suggestedAction": "방산 섹터의 지속성 점수를 낮추고 실적 가시성을 재평가합니다."
+    },
+    {
+      "id": "rule-platform-growth",
+      "scope": "sector",
+      "condition": "클라우드 또는 광고 성장률이 시장 기대를 하회",
+      "linkedIndicatorId": "nasdaq-momentum",
+      "threshold": "Growth miss",
+      "severity": "caution",
+      "suggestedAction": "플랫폼 섹터 내 이익 가시성이 높은 종목으로만 압축합니다."
+    },
+    {
+      "id": "rule-biotech-funding",
+      "scope": "sector",
+      "condition": "신용 스프레드가 4.8% 이상으로 확대",
+      "linkedIndicatorId": "high-yield-spread",
+      "threshold": "4.8%+",
+      "severity": "caution",
+      "suggestedAction": "자금조달 민감도가 높은 중소형 바이오 노출을 줄입니다."
+    }
+  ]
+}
